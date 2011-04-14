@@ -2,13 +2,17 @@
  Pylons Project MiniConf
 =========================
 
-We are still looking for speakers and sponsors.
+We are still looking for speakers and sponsors. If you would like to
+talk, make a submission in the miniconf issue collector and tag it
+`talk submission`:
+
+`https://github.com/Pylons/miniconference/issues`_
 
 
 Tenative Schedule of Events
----------------------------------------
+---------------------------
 
-[exact times and locations subject to change]
+[*exact times and locations subject to change*]
 
 
 - **April 29th** Pylons Project MiniConf @ *NextSpace (28 2nd St., SF)
@@ -20,5 +24,7 @@ Tenative Schedule of Events
 
 Related Events
 --------------
+
+[*exact times and locations subject to change*]
 
 - **April 28th**   AltoPy Drinkup w/ featured speaker Chris McDonough, Pyramid Architect @ *Old Pro, Palo Alto* **5pm**
