@@ -30,3 +30,15 @@ Related Events
 [*exact times and locations subject to change*]
 
 - **April 28th**   AltoPy Drinkup w/ featured speaker Chris McDonough, Pyramid Architect @ *Old Pro, Palo Alto* **5pm**
+
+
+FAQ
+---
+
+**How do I get involved?**
+  
+  Join our planning `google group <http://groups.google.com/group/pylons-project-mini-conference>`_ or the `convore thread  <https://convore.com/pylons/pylons-project-mini-conference/`_
+
+**My company loves Pylons, how can we help?!**
+
+  Join the list and give us a hollar.  We would love sponsorship for food and beverage.  Also our web prescence currently sucks, so we would love any help anyone would be willing to offer!
