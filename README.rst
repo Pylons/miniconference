@@ -6,7 +6,7 @@ We are still looking for speakers and sponsors. If you would like to
 talk, make a submission in the miniconf issue collector and tag it
 `talk submission`:
 
-`https://github.com/Pylons/miniconference/issues`_
+https://github.com/Pylons/miniconference/issues
 
 
 Tenative Schedule of Events
