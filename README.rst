@@ -17,7 +17,7 @@ Tenative Schedule of Events
 
 - **April 29th** 
   Pylons Project MiniConf 
-  @ *NextSpace (28 2nd St., SF) or Yelp* - **1:00pm - 600pm**
+  @ *NextSpace (28 2nd St., SF) or Yelp* - **12:00pm - 600pm**
 
 - **April 30th** 
   Pylons Project Sprint 
