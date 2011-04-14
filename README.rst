@@ -37,7 +37,7 @@ FAQ
 
 **How do I get involved?**
   
-  Join our planning `google group <http://groups.google.com/group/pylons-project-mini-conference>`_ or the `convore thread  <https://convore.com/pylons/pylons-project-mini-conference/`_
+  Join our planning `google group <http://groups.google.com/group/pylons-project-mini-conference>`_ or the `convore thread <https://convore.com/pylons/pylons-project-mini-conference/`_
 
 **My company loves Pylons, how can we help?!**
 
