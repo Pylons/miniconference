@@ -2,11 +2,9 @@
  Pylons Project MiniConf
 =========================
 
-We are still looking for speakers and sponsors. If you would like to
-talk, make a submission in the miniconf issue collector and tag it
-`talk submission`:
+We are looking for speakers and sponsors and volunteers. Join up and contact us at::
 
-https://github.com/Pylons/miniconference/issues
+http://www.meetup.com/sfbay-pylons-proj/
 
 
 Tenative Schedule of Events
