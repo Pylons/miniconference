@@ -7,27 +7,16 @@ We are looking for speakers and sponsors and volunteers. Join up and contact us 
 http://www.meetup.com/sfbay-pylons-proj/
 
 
-Tenative Schedule of Events
----------------------------
+Schedule of Event
+-----------------
 
-[*exact times and locations subject to change*]
-
-
-- **April 29th** 
-  Pylons Project MiniConf 
-  @ *NextSpace (28 2nd St., SF) or Yelp* - **12:00pm - 600pm**
-
-- **April 30th** 
-  Pylons Project Sprint 
-  @ *NextSpace* - **10am - whenever**
+see: `MiniConf Wiki <https://github.com/Pylons/miniconference/wiki>`_
 
 
 Related Events
 --------------
 
-[*exact times and locations subject to change*]
-
-- **April 28th**   AltoPy Drinkup w/ featured speaker Chris McDonough, Pyramid Architect @ *Old Pro, Palo Alto* **5pm**
+- **April 28th**   AltoPy Drinkup w/ featured speaker Chris McDonough, Pyramid Architect @ *285 Hamilton Avenue fifth floor, Palo Alto* **5pm**
 
 
 FAQ
@@ -39,4 +28,4 @@ FAQ
 
 **My company loves Pylons, how can we help?!**
 
-  Join the list and give us a hollar.  We would love sponsorship for food and beverage.  Also our web prescence currently sucks, so we would love any help anyone would be willing to offer!
+  Join the list and give us a hollar.  We would love sponsorship for food and beverage.  Also our web presence currently sucks, so we would love any help anyone would be willing to offer!
