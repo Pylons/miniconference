@@ -25,7 +25,7 @@ Pyramid History
 
 - 2008 through 2010, existed as  ``repoze.bfg``.
 
-- ``repoze.bfg`` Zope-inspired.  Features cadged from Pylons and Django.
+- ``repoze.bfg`` inspired by Zope, Pylons and Django.
 
 - October 2010, ``repoze.bfg`` was forked to become Pyramid, a Pylons Project
   subproject.
@@ -42,6 +42,9 @@ Pyramid Status
 - 1.1 due out soonly.
 
 - ~ 12K downloads from PyPI of 1.0 so far.
+
+- ~10 official add-ons, one "development environment" built atop Pramid
+  (Akhet), a number of CMS systems.
 
 Pylons Project
 --------------
