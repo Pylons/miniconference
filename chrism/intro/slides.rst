@@ -41,6 +41,8 @@ Pyramid Status
 
 - 1.1 due out soonly.
 
+- ~ 12K downloads from PyPI of 1.0 so far.
+
 Pylons Project
 --------------
 
