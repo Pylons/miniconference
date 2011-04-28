@@ -11,19 +11,52 @@ Pyramid Views
 View Callables
 --------------
 
-A view callable is:
+- View callables are the work horses of most web applications.  They compose
+  the "front" of the server side of the application.
 
-- Any Python object with a ``__call__`` method that accepts a Request object
-  and returns a Response object.
+.. raw:: html
 
-- *or* a class that accepts a Request object as an ``__init__`` argument and
-  which possesses a different method which accepts no arguments; that method
-  returns a Response object.
+		<!--Our conversation-->
+		<div class="commentArea">
+			<div class="bubbledLeft">
+				Hi, here's a request.  Could I have a response?  BTW, I'm kinda 
+        particular.
+			</div>
+			<div class="bubbledRight">
+				Wow! I see all the conditions you put in there.  Let me
+				dig around a little bit to find you the best answer.  OK, here's my best
+				response, hope you like it!
+			</div>
+		</div>
+		<!--End of conversation-->
 
-A View Callable as a Function
------------------------------
+WTView?
+-------
 
-Here's a simple view callable (``aview``) implemented as a function:
+.. image:: omg-wtf.jpg
+   :align: center
+
+- Definition of "view" is the same as Django's, Flask's, and Zope's.
+
+- Dissimilar from Rails' and Pylons'.  Pyramid doesn't use "MVC" terminology
+  but works the same.
+
+View Callables
+--------------
+
+A Pyramid view callable is:
+
+- A **function** (or any other object with a ``__call__`` method) that
+  accepts a Request object and returns a Response object.
+
+- *or* a **class** that accepts a Request object as an ``__init__`` argument
+  and which also has a different method which accepts no arguments; that
+  method returns a Response object.
+
+A View Callable as Function
+---------------------------
+
+Below, ``aview`` is a simple view callable implemented as a **function**:
 
 .. sourcecode:: python
 
@@ -32,10 +65,10 @@ Here's a simple view callable (``aview``) implemented as a function:
    def aview(request):
        return Response('OK')
 
-A View Callable as an Instance
-------------------------------
+A View Callable as Instance
+---------------------------
 
-Here's a simple view callable (``aview``) implemented as an instance:
+Below, ``aview`` is a simple view callable implemented as an **instance**:
 
 .. sourcecode:: python
 
@@ -47,10 +80,10 @@ Here's a simple view callable (``aview``) implemented as an instance:
 
    aview = AViewFactory()
 
-A View Callable as a Class
---------------------------
+A View Callable as Class
+------------------------
 
-Here's a simple view callable (``aview``) implemented as a class:
+Below, ``aview`` is a simple view callable implemented as a **class**:
 
 .. sourcecode:: python
 
@@ -78,19 +111,10 @@ Any method of a view class can return a response:
        def notok(self):
            return Response('Not OK')
 
-View Class (Multiple Methods)
------------------------------
+View Declared!=Registered
+-------------------------
 
-- Individual response-returning methods of a class used as a view callable need
-  to be registered separately.
-
-- In the previous slide, the ``ok`` and ``notok`` methods will need to be
-  registered separately to be eligible for view execution.
-
-View Declaration!=Registration
-------------------------------
-
-- Merely creating a view callable or a view class does not make it eligible
+- Typing in a view callable or a view class does not make it eligible
   to be considered for view execution.
 
 - You need to *register* a view callable to make it eligible for view
@@ -114,21 +138,6 @@ View Registration (Imperative)
       config.add_route('home', '/')
       config.add_view(aview, route_name='home')
 
-View Registration (Imperative)
-------------------------------
-
-- View callables are registered imperatively using the ``add_view`` method of
-  a Configurator object named ``config``.
-
-- The previous script registers the ``__main__.aview`` view callable
-  as a view.
-
-- This view will be found when the ``PATH_INFO`` portion of the request URL is
-  ``/``.
-
-- The ``route_name`` argument passed to ``add_view`` refers to the name
-  of the single route added via ``add_route`` named ``home``.
-
 View Class (Multiple Methods)
 -----------------------------
 
@@ -137,15 +146,15 @@ View Class (Multiple Methods)
    class aview(object):
        def __init__(self, request):
            self.request = request
-       def ok(self): return Response('OK')
-       def notok(self): return Response('Not OK')
-   if __name__ == '__main__':
-       # ... 
+       def ok_view(self):return Response('OK')
+       def notok_view(self):return Response('NotOK')
+   if __name__ == '__main__': # ...
        config.add_route('ok', '/ok')
        config.add_route('notok', '/notok')
-       config.add_view(aview,route_name='ok',attr='ok')
+       config.add_view(aview,route_name='ok',
+                       attr='ok_view')
        config.add_view(aview,route_name='notok',
-                       attr='notok')
+                       attr='notok_view')
 
 View Class (Multiple Methods)
 -----------------------------
@@ -157,8 +166,16 @@ View Class (Multiple Methods)
 - When ``attr`` *is*, passed, however, it names the method of the
   class you like to behave as the response generating callable.
 
-Registering A View Declaratively
---------------------------------
+Declarative View Registration
+-----------------------------
+
+- Reduces boilerplate.
+
+- Puts view configuration parameters nearer to view callable itself
+  ("locality of reference").
+
+Register View Declaratively
+---------------------------
 
 .. sourcecode:: python
 
@@ -174,31 +191,8 @@ Registering A View Declaratively
        config.add_route('home', '/')
        config.scan('__main__')
 
-Registering a View Declaratively
---------------------------------
-
-- In the previous example, we changed the example to use ``view_config``
-  decorator.  Instead of calling ``add_view`` for each view callable
-  imperatively, a view callable can be marked up with a ``view_config``
-  decorator.
-
-- ``view_config`` - marked view callables and classes are registered
-  as the result of a ``scan``.
-
-- The scanning process calls ``add_view`` when it finds a marked-up view
-  callable.  ``@view_config`` + ``scan`` == ``add_view``.
-
-Registering a View Declaratively
----------------------------------
-
-- A scan will consider the declarations made in the package it scans and any
-  subpackages recursively.
-
-- To do so, it imports each module it finds in the package as necessary, and
-  will do the same recursively for subpackages.
-
-Class Registered Declaratively
-------------------------------
+Register Class Declaratively
+----------------------------
 
 .. sourcecode:: python
 
@@ -214,8 +208,8 @@ Class Registered Declaratively
        config.add_route('home', '/')
        config.scan('__main__')
 
-Method Registered Declaratively
--------------------------------
+Register Method Declaratively
+-----------------------------
 
 .. sourcecode:: python
 
@@ -232,8 +226,8 @@ Method Registered Declaratively
        config.add_route('notok', '/not_ok')
        config.scan('__main__')
 
-Impact of view_config Decorator
--------------------------------
+Impact of **view_config**
+-------------------------
 
 - ``view_config`` *only* marks view callables as registerable during a scan.
   It is a passthrough that just marks the callable so a later scan
@@ -257,21 +251,24 @@ View Configuration
 - We've seen one named ``route_name``.  This argument associates the view
   with a *route* defined by ``add_route``.
 
-View Lookup and Execution
--------------------------
+View Lookup/Execution
+---------------------
 
-Pyramid responds to a request by:
+Pyramid "router" orchestrates view lookup and execution.  
 
-- Looking up a view.
+.. image:: asimo.jpg
+   :align: center
 
-- Executing the view that is found via view lookup.
+Router Responsibilities
+-----------------------
 
-- The Pyramid "router" orchestrates view lookup and execution.
-
-- The router is invoked when a WSGI request enters the application.
+- The router is invoked when a WSGI request enters the application. 
 
 - Developers usually don't interact with the router, unless they're creating
   a functional test.
+
+.. image:: Blackbox.jpg
+   :align: center
 
 Router Responsibilities
 -----------------------
@@ -282,7 +279,7 @@ The router (among other things) is responsible for these steps:
 
 - Look for a matching route.
 
-- Traverse to find a context.
+- Find a "context" (used for security).
 
 - Using the context and the request, find a view callable.
 
@@ -291,47 +288,118 @@ The router (among other things) is responsible for these steps:
 Router Timeline
 ---------------
 
-- The router always has a global root factory and a request factory.
+- A new Request object is created using the **request factory**.
 
-- A new Request object is created using the request factory.
+.. image:: Factory_1.png
+   :align: center
 
 Router Timeline (2)
 -------------------
 
-- We look for a matching route by iterating over the existing routes in
-  insertion order.
+- We look for a matching route by **iterating** over the existing routes **in
+  insertion order**.  Some routes have predicates.  The first route in
+  insertion order that matches all predicates "wins".
 
-- Some routes have predicates.  The first route in insertion
-  order that matches all predicates "wins".
-
-- If we find a matching route, we find a request interface associated with
-  the matched route.
-
-- If the matched route has a root factory, we use that instead of the global
-  root factory.
+.. image:: routes.png
+   :align: center
 
 Router Timeline (3)
 -------------------
 
-- A root object is created using the root factory.
+- If we find a matching route, we **mark the request** as matched.
 
-- We obtain a context and a view name via traversal using the root object,
-  even if a route matched.  This is how "hybrid" urldispatch/traversal is
-  accomplished.
-
-- We figure out what interfaces are provided by the context.
-
-- We look up a view based on the request interface and the context interface.
+.. image:: checkmark.png
+   :align: center
 
 Router Timeline (4)
 -------------------
 
-- We call the found view using the context and the request; it will return a
+- If the matched route has a **context factory**, we use that instead of the
+  **global context factory**.
+
+- We use the context factory to derive a context.  The context is used for
+  security checking.
+
+.. image:: access.jpg
+   :align: center
+
+Router Timeline (5)
+-------------------
+
+- We look up a view based on the request and the context.
+
+.. raw:: html
+
+		<!--Our conversation-->
+		<div class="commentArea">
+			<div class="bubbledLeft">
+				Hi, here's a request and a context.  Could I have a view callable?
+			</div>
+			<div class="bubbledRight">
+        Yep, here's one that matches all the conditions of the request and
+        the context.
+			</div>
+		</div>
+		<!--End of conversation-->
+
+Router Timeline (6)
+-------------------
+
+- The view returned might be a "multiview".
+
+.. image:: multiview2.png
+   :align: center
+
+Router Timeline (7)
+--------------------
+
+- A multiview is a group of views that share the same context type and
+  request type.  Each concrete view that is part of a multiview differs only
+  by the predicates it possesses.
+
+- Predicates are checked to find "the best" concrete view that is part of the
+  multiview.
+
+.. image:: multiview-grid.png
+   :align: center
+
+Router Timeline (7)
+-------------------
+
+- We call a derived function that represents the view using the request.
+
+.. sourcecode:: python
+
+   from pyramid.response import Response
+
+   def aview(request):
+       return Response('OK')
+
+   def derived_view(request):
+       # ... do security checking using request and 
+       # request.context ..
+       return aview(request)
+
+Router Timeline (8)
+-------------------
+
+- If the current user is permitted to execute the view, it will return a
   Response.
 
-- The view might be a "multiview", in which case predicates are checked to
-  find "the best" concrete view that is part of the multiview.
+- Otherwise, the user will receive an Unauthorized response from the
+  framework.
 
-- A multiview is a group of views that share the same
-  context-type/request-type/view-name triad.  Each concrete view that is part
-  of a multiview differs only by the predicates it possesses.
+Denouement
+-----------
+
+- Pyramid view lookup is extremely flexible.
+
+- Built-in security features make it easy to lock down.
+
+- "Traversal", a separate way of mapping views to URLs, is an alternative;
+  not covered here.
+
+Question Time
+--------------
+
+- Please ask questions!

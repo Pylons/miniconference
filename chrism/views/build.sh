@@ -1,1 +1,1 @@
-python rst-directive.py --theme-url=ui/pretty views.rst views.html
+python rst-directive.py --theme-url=ui/custom views.rst views.html
