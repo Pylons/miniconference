@@ -33,13 +33,14 @@ View Callables
 WTView?
 -------
 
-.. image:: omg-wtf.jpg
-   :align: center
-
 - Definition of "view" is the same as Django's, Flask's, and Zope's.
 
 - Dissimilar from Rails' and Pylons'.  Pyramid doesn't use "MVC" terminology
   but works the same.
+
+.. image:: omg-wtf.jpg
+   :align: center
+
 
 View Callables
 --------------
@@ -371,10 +372,8 @@ Router Timeline (7)
 .. sourcecode:: python
 
    from pyramid.response import Response
-
    def aview(request):
        return Response('OK')
-
    def derived_view(request):
        # ... do security checking using request and 
        # request.context ..
